@@ -21,41 +21,41 @@ let limit = 9;
 
 //Evento de cargar los pokemones de atras
 previous.addEventListener("click", () => {
-  if(offset != 1){ //Si offset es diferente de 1, retornar error porque no puede haber un pokemon con id 0
-    offset -= 9; //Cada vez que le demos atras le quitamos 9 elementos, osea 9 pokemons
-     removeChildNodes(pokemonContainer); //Eliminara el contenedor de pokemon y volvera al anterior cuando se llame Feacthpokemons
-       fetchPokemonsss(offset, limit); //Llamamos los nuevos pokemos 
+  if(offset != 1){                                   //Si offset es diferente de 1, retornar error porque no puede haber un pokemon con id 0
+    offset -= 9;                                    //Cada vez que le demos atras le quitamos 9 elementos, osea 9 pokemons
+     removeChildNodes(pokemonContainer);           //Eliminara el contenedor de pokemon y volvera al anterior cuando se llame Feacthpokemons
+       fetchPokemonsss(offset, limit);            //Llamamos los nuevos pokemos 
   }
 });
 
 
 
 //Evento de cargar los pokemones de alante
-next.addEventListener("click", () =>{
-  offset +=9 ; //Cada vez que le demos adelante le añadimos los 9 elementos, osea 9 pokemons
-    removeChildNodes(pokemonContainer); //Eliminara el contenedor de pokemon y continuara al siuiente cuando se llame Feacthpokemons
-      fetchPokemonsss(offset, limit);//Llamamos los nuevos pokemos 
+next.addEventListener("click", () => {
+  offset +=9 ;                                //Cada vez que le demos adelante le añadimos los 9 elementos, osea 9 pokemons
+    removeChildNodes(pokemonContainer);      //Eliminara el contenedor de pokemon y continuara al siuiente cuando se llame Feacthpokemons
+      fetchPokemonsss(offset, limit);       //Llamamos los nuevos pokemos 
 })
 
 
 
 
 //Traer los pokemon desde la api
-function fetchPokemon(id){
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`) //Traemos el link del pokeApi//
-    .then((respuesta) => respuesta.json()) //Obtenemos respuesta
-     .then((dato) => crearPokemons(dato)); //Para mostrarlo en consola y ver si trae los daotos "console.log(dato))"//
-      spinner.style.display = "none" //Cada vez que llamamos a fetchPokemon vamos a esconder el spinner    
+function fetchPokemon(id) {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)           //Traemos el link del pokeApi//
+    .then((respuesta) => respuesta.json())                     //Obtenemos respuesta
+     .then((dato) => crearPokemons(dato));                    //Para mostrarlo en consola y ver si trae los daotos "console.log(dato))"//
+      spinner.style.display = "none"                         //Cada vez que llamamos a fetchPokemon vamos a esconder el spinner    
 }
 
 
 
 
 //Traer los primeros 9 pokedex
-function fetchPokemonsss(offset, limit){//Limita la traida de los pokemons//
-  spinner.style.display = "block" //Cada vez que cargamos los 9 nuevos pokemons cargara el spinner 
-      for(let i = offset; i < offset + limit; i++){ //Sumamos el offset y el limit//
-        fetchPokemon(i); // i, estara iterando hasta los primeros 9 pokemons
+function fetchPokemonsss(offset, limit) {                    //Limita la traida de los pokemons//
+  spinner.style.display = "block"                           //Cada vez que cargamos los 9 nuevos pokemons cargara el spinner 
+      for(let i = offset; i < offset + limit; i++){        //Sumamos el offset y el limit//
+        fetchPokemon(i);                                  // i, estara iterando hasta los primeros 9 pokemons
       }
 }
 
@@ -63,7 +63,7 @@ function fetchPokemonsss(offset, limit){//Limita la traida de los pokemons//
 
 
 //Crear pokemones
-function crearPokemons(pokemon){
+function crearPokemons(pokemon) {
 
   //Flicard
   const fliCard = document.createElement("div");
@@ -131,13 +131,13 @@ function crearPokemons(pokemon){
     
 
 
-    cardBack.appendChild(progressBars(pokemon.stats)); //LLamamos a las estadisticas del pokemon
+    cardBack.appendChild(progressBars(pokemon.stats));    //LLamamos a las estadisticas del pokemon
     
 
 
-    cardContainer.appendChild(card); //Añadir la carta al contenedor
-     cardContainer.appendChild(cardBack); //Añadir la carta de atras al contenedor
-      pokemonContainer.appendChild(fliCard); //Añadir la carta giratoria
+    cardContainer.appendChild(card);              //Añadir la carta al contenedor
+     cardContainer.appendChild(cardBack);        //Añadir la carta de atras al contenedor
+      pokemonContainer.appendChild(fliCard);    //Añadir la carta giratoria
  }
 
 
@@ -157,11 +157,11 @@ function crearPokemons(pokemon){
 
 
 
-    const statPercent = stat.base_stat / 2 + "%"; //Esta propieda se saca del array  que contiene la api de los pokemons
+    const statPercent = stat.base_stat / 2 + "%";   //Esta propieda se saca del array  que contiene la api de los pokemons
 
 
 
-    const statContainer = document.createElement("stat-container");//Creando elemento html
+    const statContainer = document.createElement("stat-container"); //Creando elemento html
       statContainer.classList.add("stat-container"); //Añadiendo clase al div//
 
 
@@ -193,10 +193,10 @@ function crearPokemons(pokemon){
 
     
 
-    progress.appendChild(progressBar); //Le añadimos el progressbar al progress
-     statContainer.appendChild(statName); //Le añadimos el statname al contenedor
-      statContainer.appendChild(progress); //Le añadimos el progress al contenedor
-       statsContainer.appendChild(statContainer);//Añadimos el otroContenedor en el contenedor original
+    progress.appendChild(progressBar);                   //Le añadimos el progressbar al progress
+     statContainer.appendChild(statName);               //Le añadimos el statname al contenedor
+      statContainer.appendChild(progress);             //Le añadimos el progress al contenedor
+       statsContainer.appendChild(statContainer);     //Añadimos el otroContenedor en el contenedor original
    }
 
 
@@ -206,7 +206,7 @@ function crearPokemons(pokemon){
 
 
 //Funcion para remover todos los elementos dentro de un elemento// mientras en el contenedor haya tarjetas, quitarlas.
- function removeChildNodes(parent){
+ function removeChildNodes(parent) {
   while (parent.firstChild){
     parent.removeChild(parent.firstChild);
   }
